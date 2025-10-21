@@ -55,34 +55,60 @@ else:
         raise FileNotFoundError("Service account JSON file not found and GOOGLE_CREDENTIALS is not set.")
     
 expected_headers = [
-    'Timestamp',
+    'Timestamp', 
     'Email Address', 
-    'Name:', 
+    'Name:',
     "Prior to today's visit, when was the last time you visited a doctor?", 
-    'Which services were provided to you today?', 
-    'How do you feel about the health issue that brought you to BMHC?', 
-    'What is your overall stress level?', 
+    'Please explain the reason for your answer:',
+    'What is your overall stress level?',
+    'Explain the reason for your answer:', 
     'How would you rate your overall level of mental health?', 
-    'How would you rate your overall physical health?',
-    "What is your overall impression of the Black Men's Health Clinic?", 
+    'How would you rate your overall physical health?', 
+    "What is your overall impression of the Black Men's Health Clinic?",
     'Did the medical provider meet your expectations?', 
-    'Did the medical care meet your needs?', 
+    'Did the medical care meet your needs?',
     'Did the Outreach & Engagement Team provide a strong support system?', 
-    'Are you a member of the HealthyCuts™ Program?',
+    'Are you a member of the HealthyCuts™ Program?', 
+    'Are you a Movement is Medicine member?', 
+    'Are you interested in potential clinical trial opportunities?', 
+    'Are you willing to complete a brief survey?', 
+    'Column 1'
 ]
 
 # Authorize and load the sheet
 client = gspread.authorize(creds)
 sheet = client.open_by_url(sheet_url)
 worksheet = sheet.get_worksheet(0)  
-# values = worksheet.get_all_values()
-# headers = values[0] 
-# rows = values[1:] # Remaining rows as data
-
-# data = pd.DataFrame(rows, columns=headers)
 # data = pd.DataFrame(worksheet.get_all_records())
-# data = pd.DataFrame(client.open_by_url(sheet_url).get_all_records())
-data = pd.DataFrame(worksheet.get_all_records(expected_headers=expected_headers))
+# data = pd.DataFrame(worksheet.get_all_records(expected_headers=expected_headers))
+
+try:
+    # Get all values from the sheet
+    all_values = worksheet.get_all_values()
+    
+    # Check if we have enough rows
+    if len(all_values) < 2:
+        raise ValueError("Sheet doesn't have enough rows")
+    
+    # Use row 1 as headers (index 0)
+    headers = all_values[0]
+    # print("Actual headers from row 1:", headers)
+    
+    # Get data starting from row 2 (index 1)
+    data_rows = all_values[1:]
+    
+    # Create DataFrame
+    data = pd.DataFrame(data_rows, columns=headers)
+    df = data.copy()
+    
+    # print("Successfully loaded data with headers from row 1")
+    
+except Exception as e:
+    print(f"Error loading data: {e}")
+    # Fallback: try the original method
+    data = pd.DataFrame(worksheet.get_all_records())
+    df = data.copy()
+
 df = data.copy()
 
 # -----------------------------
@@ -143,27 +169,33 @@ for col in df_3.select_dtypes(include='object').columns:
 
 # ================================= Columns ================================= #
 
-columns =[
-    'Timestamp',
-    'Email Address', 
-    'Name:', 
-    "Prior to today's visit, when was the last time you visited a doctor?", 
-    'Which services were provided to you today?', 
-    'How do you feel about the health issue that brought you to BMHC?', 
-    'What is your overall stress level?', 
-    'Explain the reason for your answer:', 
-    'How would you rate your overall level of mental health?', 
-    'How would you rate your overall physical health?',
-    'Please explain the reason for your answer:', 
-    "What is your overall impression of the Black Men's Health Clinic?", 
-    'Did the medical provider meet your expectations?', 
-    'Did the medical care meet your needs?', 
-    'Did the Outreach & Engagement Team provide a strong support system?', 
-    'Please explain the reason for your answer:',
-    'Are you a member of the HealthyCuts™ Program?',
-    'Are you a Movement is Medicine member?', 
-    'Are you interested in potential clinical trial opportunities?', 
-    'Month'
+columns = [
+    "Timestamp",
+    "Email Address",
+    "Name:",
+    "Prior to today's visit, when was the last time you visited a doctor?",
+    "Which services were provided to you today?",
+    "How do you feel about the health issue that brought you to BMHC?",
+    "Please explain the reason for your answer:",
+    "What is your overall stress level?",
+    "Explain the reason for your answer:",
+    "How would you rate your overall level of mental health?",
+    "Please explain the reason for your answer:",
+    "How would you rate your overall physical health?",
+    "Please explain the reason for your answer:",
+    "What is your overall impression of the Black Men's Health Clinic?",
+    "Did the medical provider meet your expectations?",
+    "Please explain the reason for your answer:",
+    "Did the medical care meet your needs?",
+    "Please explain the reason for your answer:",
+    "Did the Outreach & Engagement Team provide a strong support system?",
+    "Please explain the reason for your answer:",
+    "Are you a member of the HealthyCuts™ Program?",
+    "Are you a Movement is Medicine member?",
+    "Are you interested in potential clinical trial opportunities?",
+    "Are you willing to complete a brief survey?",
+    "Column 1",
+    "Month"
 ]
 
 # =============================== Missing Values ============================ #
@@ -237,19 +269,23 @@ rating_colors = {
 
 rating_order = ['1', '2', '3', '4', '5']
 
-columns_to_order = ['Health', 'Mental', 'Stress', 'Physical', 
-                    # 'Impression', 'Expectation', 'Care'
-                    ]
+columns_to_order = [
+    'Health',
+    'Mental', 
+    'Stress', 
+    'Physical', 
+]
 
 df = df[df['Decline'] == 'Yes'].copy()
 
 # print(df_rating.head(10))
 
-# for col in columns_to_order:
-#     df_rating[col] = pd.to_numeric(df_rating[col], errors='coerce')
+for col in columns_to_order:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # print(df.head(10))
 
+# print("Health Unique:", df['Health'].unique())
 len_health = len(df['Health'])
 sum_health = df['Health'].sum()
 health_score = sum_health / len_health
