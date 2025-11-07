@@ -1,84 +1,94 @@
-# BMHC Q4 2024 Reports: Responses
+# 📊 BMHC Client Satisfaction Report 
 
-## Description
+## 📝 Description 
 
+An interactive Plotly/Dash dashboard that tracks and visualizes client satisfaction survey responses at the Black Men's Health Clinic (BMHC). This report provides comprehensive insights into client feedback, service quality ratings, satisfaction scores, and improvement suggestions. The dashboard enables stakeholders to monitor client experience, identify areas of excellence and improvement, and make data-driven decisions to enhance service quality and client satisfaction across all BMHC programs.
 
+## 📂 Table of Contents 
+    
+- [Installation](#-installation)
+- [Usage](#️-usage)
+- [Methodology](#-methodology)
+- [Findings](#-findings)
+- [Conclusion](#-conclusion)
+- [License](#-license)
 
-## Table of Contents 
-	
-- [Installation](#installation)
-- [Usage](#usage)
-- [Methodology](#methodology)
-- [Results](#results)
-- [Conclusion](#conclusion)
-- [License](#license)
-
-## Installation
+## 📦 Installation
 
 To run this project locally, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/CxLos/BMHC_Responses_Q4_2024
+    git clone https://github.com/CxLos/Survey_
     ```
 2. Navigate to the project directory:
     ```bash
-    cd BMHC_Responses_Q4_2024
+    cd Survey_
     ```
 3. Install the required dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-## Usage
+## ▶️ Usage
 
 - This is an interactive Plotly/Dash dashboard. Please feel free to hover over any interesting data points that you would like to take a deeper dive on and zoom or zoom out to get a better view.
 
 - To launch the dashboard, execute the following command in your terminal or click the following link:
 
-  - [Service Tracker Report: Q4 2024 Dashboard - OnRender](https://bmhc-responses-q4-2024.onrender.com/)
-  - [Service Tracker Report: Q4 2024 Dashboard - Heroku](https://bmhc-responses-q4-2024-f697948dcc39.herokuapp.com/)
+  - [Client Satisfaction Survey Dashboard - OnRender](https://survey__.onrender.com/)
 
 ```bash
-python responses_q4_2024.py
+python survey__.py
 ```
 
-![Preview](./screenshots/Screenshot-163423.png)
+![Preview](./screenshots/)
 
-## Methodology
+## 🧪 Methodology
 
 The data for this project was sourced directly from the Black Men's Health Clinic
 
 ## Plans for collected data:
 
-- 
--
--
--
+- Track satisfaction trends to identify service strengths and improvement areas
+- Analyze feedback patterns across different programs and services
+- Monitor client experience metrics and satisfaction score changes over time
+- Generate automated satisfaction reports for program teams and leadership
+- Identify specific client concerns and implement targeted improvements
 
-## Findings
+## 🔍 Findings
 
-### 
+### Overall Satisfaction
 
-* 
+* Total survey responses and response rates
+* Overall satisfaction scores and ratings distribution
+* Net Promoter Score (NPS) and client loyalty metrics
 
-### 
+### Service Quality Ratings
 
-* 
+* Ratings by service type (clinical care, navigation, outreach, fitness programs, etc.)
+* Staff professionalism and friendliness scores
+* Facility cleanliness and accessibility ratings
 
-### 
+### Client Feedback Themes
 
-* 
+* Common positive feedback and areas of excellence
+* Recurring concerns and improvement suggestions
+* Specific service requests and unmet needs
 
-### 
+### Experience Metrics
 
-* 
+* Wait times and appointment scheduling satisfaction
+* Communication effectiveness and information clarity
+* Cultural competency and respect for clients' experiences
 
-## Conclusion
+## ✅ Conclusion
+
+The Client Satisfaction Report provides valuable insights into the quality of services and client experience at BMHC. The data collected enables leadership to make informed decisions about service improvements, staff training needs, and program enhancements. By tracking satisfaction metrics and analyzing client feedback, this dashboard supports a culture of continuous improvement and client-centered care. Regular monitoring of these metrics helps ensure that BMHC consistently delivers high-quality, culturally competent services that meet the needs and expectations of Black men in the community. This feedback-driven approach continues to advance BMHC's mission of providing excellent, respectful, and accessible healthcare that truly serves the community.
 
 
 
-## License
+## 📄 License
 
 MIT License
 
