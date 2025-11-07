@@ -36,7 +36,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 # Define the Google Sheets URL
 sheet_url = "https://docs.google.com/spreadsheets/d/1pxi6x6ikRZEjzEwM1Aw28yWK1h-G1p61wulYS5F9kOw/edit?resourcekey=&gid=586078421#gid=586078421"
 sheet_url_2 = "https://docs.google.com/spreadsheets/d/1Vi5VQWt9AD8nKbO78FpQdm6TrfRmg0o7az77Hku2i7Y/edit#gid=78776635"
-sheet_url_3 = "https://docs.google.com/spreadsheets/d/1GWnQrLptjkgg8CR1G8OpYaCHZMmW5xOzg0kFtPCkxKw/edit?gid=1975848686#gid=1975848686"
+sheet_url_3 = "https://docs.google.com/spreadsheets/d/1C5U1gFuQWmkxmm5MqZBPdzGmfIqAqi65Rp11D8l8_vA/edit?gid=1735808893#gid=1735808893"
 
 # Define the scope
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
