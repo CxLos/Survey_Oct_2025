@@ -2259,8 +2259,8 @@ html.Div(
             
             dash_table.DataTable(
                 id='applications-table',
-                data=data,
-                columns=columns,
+                data=data, #type: ignore
+                columns=columns, #type: ignore
                 page_size=14,
                 sort_action='native',
                 filter_action='native',
@@ -2285,7 +2285,7 @@ html.Div(
                     'whiteSpace': 'normal',
                     'height': 'auto',
                 },
-                style_cell_conditional=[
+                style_cell_conditional=[ #type: ignore
                     # make the index column narrow and centered
                     {'if': {'column_id': '#'},
                     'width': '20px', 'minWidth': '60px', 'maxWidth': '60px', 'textAlign': 'center'},
